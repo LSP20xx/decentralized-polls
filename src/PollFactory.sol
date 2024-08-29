@@ -8,11 +8,7 @@ contract PollFactory {
 
     event PollCreated(address pollAddress, string question);
 
-    function createPoll(
-        string memory question,
-        string[] memory options,
-        address tokenAddress
-    ) public {
+    function createPoll(string memory question, string[] memory options, address tokenAddress) public {
         Poll newPoll = new Poll(question, options, tokenAddress);
         polls.push(newPoll);
         emit PollCreated(address(newPoll), question);

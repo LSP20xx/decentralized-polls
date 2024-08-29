@@ -14,15 +14,11 @@ contract Poll {
     mapping(address => bool) public hasVoted;
     VotingToken public votingToken;
 
-    constructor(
-        string memory _question,
-        string[] memory _options,
-        address tokenAddress
-    ) {
+    constructor(string memory _question, string[] memory _options, address tokenAddress) {
         question = _question;
         votingToken = VotingToken(tokenAddress);
 
-        for (uint i = 0; i < _options.length; i++) {
+        for (uint256 i = 0; i < _options.length; i++) {
             options.push(Option({name: _options[i], voteCount: 0}));
         }
     }
@@ -46,7 +42,7 @@ contract Poll {
 
     function getWinningOption() public view returns (string memory winner) {
         uint256 winningVoteCount = 0;
-        for (uint i = 0; i < options.length; i++) {
+        for (uint256 i = 0; i < options.length; i++) {
             if (options[i].voteCount > winningVoteCount) {
                 winningVoteCount = options[i].voteCount;
                 winner = options[i].name;
